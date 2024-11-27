@@ -1,7 +1,6 @@
+package main;
+
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Main{
     public static void main(String[] args) {
@@ -11,8 +10,18 @@ public class Main{
         window.setResizable(false);
         window.setTitle("2D adventure");
 
+        //Game panel
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+
+        //to fit preferred size
+        window.pack();
+
         //to be displayed at the center of the screen
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
+        //calling the game loop
+        gamePanel.startGameThread();
     }
 }
