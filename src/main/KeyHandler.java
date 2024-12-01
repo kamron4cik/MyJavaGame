@@ -9,6 +9,7 @@ public class KeyHandler implements KeyListener {
     public boolean downPressed;
     public boolean rightPressed;
     public boolean leftPressed;
+    public boolean changeCharacter;
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -28,6 +29,9 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_A){
             leftPressed = true;
         }
+        if(code == KeyEvent.VK_C){
+            changeCharacter = true;
+        }
     }
 
         @Override
@@ -44,6 +48,9 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_A){
             leftPressed = false;
+        }
+        if(code == KeyEvent.VK_C){
+            changeCharacter = false;
         }
     }
 

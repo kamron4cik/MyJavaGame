@@ -12,20 +12,26 @@ import java.util.Objects;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
+    public String gender;
 
     public final int screenX;
     public final int screenY;
 
+    public int hasKey = 0;
+
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
         this.keyH = keyH;
+        gender = "boy";
 
         //Camera
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
         //coordinates and collision on part of character
-        solidArea = new Rectangle(10, 18, 30, 30);
+        solidArea = new Rectangle(12, 24, 24, 24);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -41,14 +47,26 @@ public class Player extends Entity{
     public void getPlayerImage(){
         try{
 
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
+            if(Objects.equals(gender, "boy")){
+                up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
+                up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
+                down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
+                down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
+                left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_1.png")));
+                left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_2.png")));
+                right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_1.png")));
+                right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
+            }
+            else if(Objects.equals(gender, "girl")){
+                up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up_1.png")));
+                up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up_2.png")));
+                down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down_1.png")));
+                down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down_2.png")));
+                left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_1.png")));
+                left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_2.png")));
+                right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_1.png")));
+                right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_2.png")));
+            }
 
         }catch (IOException e){
             e.printStackTrace();
@@ -69,10 +87,21 @@ public class Player extends Entity{
             } else if (keyH.leftPressed) {
                 direction = "left";
             }
+            else if(keyH.changeCharacter){
+                if(gender == "boy"){
+                    gender = "girl";
+                }else{
+                    gender = "boy";
+                }
+            }
 
-            //Collision checking
+            //Tile Collision checking
             collisionOn = false;
             gp.collisionChecker.checkTile(this);
+
+            //Object Collision checking
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickObject(objIndex);
 
             //Unless collision is true, player can move
             if(collisionOn == false){
@@ -104,6 +133,51 @@ public class Player extends Entity{
             }
         }
     }
+
+    public void pickObject(int index){
+        if(index != 999){
+            //So that object disappears, use gp.obj[index] = null;
+
+            //check the object type
+            String objectName = gp.obj[index].name;
+
+            // action with object
+            switch (objectName){
+                case "Key":
+                    gp.playSE(1);
+                    hasKey++;
+                    gp.obj[index] = null;
+                    gp.ui.showMessage("Key has been picked up");
+                    break;
+                case "Door":
+                    if(hasKey > 0){
+                        gp.playSE(2);
+                        hasKey--;
+                        gp.obj[index] = null;
+                        gp.ui.showMessage("Door opened");
+                    }
+                    else{
+                        gp.playSE(4);
+                        gp.ui.showMessage("You need a key");
+                    }
+                    System.out.println("Keys: " + hasKey);
+                    break;
+                case "Medal":
+                    gp.stopMusic();
+                    gp.playMusic(5);
+                    speed++;
+                    gp.obj[index] = null;
+                    gp.ui.showMessage("DESPACITO TIME!!!");
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.stopMusic();
+                    gp.playSE(6);
+                    break;
+            }
+        }
+    }
+
     //draw updated information
     public void draw(Graphics2D g2){
 //        //set color for drawing
