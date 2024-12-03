@@ -29,7 +29,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_A){
             leftPressed = true;
         }
-        if(code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_E){
             changeCharacter = true;
         }
     }
@@ -49,7 +49,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_A){
             leftPressed = false;
         }
-        if(code == KeyEvent.VK_C){
+        if(code == KeyEvent.VK_E){
             changeCharacter = false;
         }
     }

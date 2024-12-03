@@ -19,8 +19,8 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
     //world settings
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public final int maxWorldCol = 41;
+    public final int maxWorldRow = 37;
 
     //FPS of the game
     int FPS = 60;
@@ -39,8 +39,8 @@ public class GamePanel extends JPanel implements Runnable{
     public SuperObject[] obj = new SuperObject[10];
 
     //players default position
-    int playerX = 100;
-    int playerY = 100;
+    int playerX = 18;
+    int playerY = 21;
     int playerSpeed = 4;
 
     //constructor
@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void run() {
         //System.out.println("The game loop is running");
         //Set fps via sleep method
-        double drawInterval = 1000000000/FPS; // 0.01666 seconds
+        double drawInterval = (double) 1000000000 /FPS; // 0.01666 seconds
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;

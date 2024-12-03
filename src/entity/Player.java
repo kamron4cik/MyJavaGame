@@ -38,8 +38,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 20;
+        worldY = gp.tileSize * 17;
         speed = 4;
         direction = "up";
     }
@@ -58,14 +58,14 @@ public class Player extends Entity{
                 right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
             }
             else if(Objects.equals(gender, "girl")){
-                up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up_1.png")));
-                up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up_2.png")));
-                down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down_1.png")));
-                down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down_2.png")));
-                left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_1.png")));
-                left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_2.png")));
-                right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_1.png")));
-                right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_2.png")));
+                gUp1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up.png")));
+                gUp2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up.png")));
+                gDown1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down.png")));
+                gDown2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down.png")));
+                gLeft1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_1.png")));
+                gLeft2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_left_2.png")));
+                gRight1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_1.png")));
+                gRight2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_right_2.png")));
             }
 
         }catch (IOException e){
@@ -88,7 +88,7 @@ public class Player extends Entity{
                 direction = "left";
             }
             else if(keyH.changeCharacter){
-                if(gender == "boy"){
+                if(Objects.equals(gender, "boy")){
                     gender = "girl";
                 }else{
                     gender = "boy";
@@ -104,7 +104,7 @@ public class Player extends Entity{
             pickObject(objIndex);
 
             //Unless collision is true, player can move
-            if(collisionOn == false){
+            if(!collisionOn){
                 switch (direction){
                     case "up":
                         worldY -= speed;
@@ -189,28 +189,57 @@ public class Player extends Entity{
         BufferedImage image = null;
         switch (direction){
             case "up":
-                if(spriteNum == 1)
-                    image = up1;
-                if(spriteNum == 2)
-                    image = up2;
+                if(Objects.equals(gender, "boy")){
+                    if(spriteNum == 1)
+                        image = up1;
+                    if(spriteNum == 2)
+                        image = up2;
+                }else if(Objects.equals(gender, "girl")){
+                    if(spriteNum == 1)
+                        image = gUp1;
+                    if(spriteNum == 2)
+                        image = gUp2;
+                }
+
                 break;
             case "down":
-                if(spriteNum == 1)
-                    image = down1;
-                if(spriteNum == 2)
-                    image = down2;
+                if(Objects.equals(gender, "boy")){
+                    if(spriteNum == 1)
+                        image = down1;
+                    if(spriteNum == 2)
+                        image = down2;
+                }else if(Objects.equals(gender, "girl")){
+                    if(spriteNum == 1)
+                        image = gDown1;
+                    if(spriteNum == 2)
+                        image = gDown2;
+                }
                 break;
             case "left":
-                if(spriteNum == 1)
-                    image = left1;
-                if(spriteNum == 2)
-                    image = left2;
+                if(Objects.equals(gender, "boy")){
+                    if(spriteNum == 1)
+                        image = left1;
+                    if(spriteNum == 2)
+                        image = left2;
+                }else if(Objects.equals(gender, "girl")){
+                    if(spriteNum == 1)
+                        image = gLeft1;
+                    if(spriteNum == 2)
+                        image = gLeft2;
+                }
                 break;
             case "right":
-                if(spriteNum == 1)
-                    image = right1;
-                if(spriteNum == 2)
-                    image = right2;
+                if(Objects.equals(gender, "boy")){
+                    if(spriteNum == 1)
+                        image = right1;
+                    if(spriteNum == 2)
+                        image = right2;
+                }else if(Objects.equals(gender, "girl")){
+                    if(spriteNum == 1)
+                        image = gRight1;
+                    if(spriteNum == 2)
+                        image = gRight2;
+                }
                 break;
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
