@@ -82,6 +82,7 @@ public class UI {
             gp.gameThread = null;
 
         }else{
+            //keys
             g2.setFont(arial40);
             g2.setColor(Color.ORANGE);
             g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
@@ -103,6 +104,12 @@ public class UI {
                     messageOn = false;
                 }
             }
+
+            //fps
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD));
+            g2.setFont(g2.getFont().deriveFont(18f));
+            g2.setColor(Color.GREEN);
+            g2.drawString("FPS: " + gp.showFPS, 20, 100);
         }
     }
 }

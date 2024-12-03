@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     //FPS of the game
     int FPS = 60;
+    public double showFPS;
 
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
@@ -98,6 +99,7 @@ public class GamePanel extends JPanel implements Runnable{
             //Show FPS
             if(timer >= 1000000000){
                 System.out.println("FPS: " + drawCount);
+                showFPS = drawCount;
                 drawCount = 0;
                 timer = 0;
             }
