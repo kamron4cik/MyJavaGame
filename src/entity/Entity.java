@@ -8,6 +8,7 @@ public class Entity {
     public int worldX;
     public int worldY;
     public int speed;
+    public String gender;
 
     public String direction;
     public BufferedImage up1, gUp1;

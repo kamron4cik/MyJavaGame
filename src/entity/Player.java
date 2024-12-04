@@ -12,7 +12,6 @@ import java.util.Objects;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
-    public String gender;
 
     public final int screenX;
     public final int screenY;
@@ -87,7 +86,8 @@ public class Player extends Entity{
             } else if (keyH.leftPressed) {
                 direction = "left";
             }
-            else if(keyH.changeCharacter){
+            if(keyH.changeCharacter){
+                System.out.println("Gender changed");
                 if(Objects.equals(gender, "boy")){
                     gender = "girl";
                 }else{
@@ -190,11 +190,13 @@ public class Player extends Entity{
         switch (direction){
             case "up":
                 if(Objects.equals(gender, "boy")){
+                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = up1;
                     if(spriteNum == 2)
                         image = up2;
                 }else if(Objects.equals(gender, "girl")){
+                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gUp1;
                     if(spriteNum == 2)
@@ -204,11 +206,13 @@ public class Player extends Entity{
                 break;
             case "down":
                 if(Objects.equals(gender, "boy")){
+                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = down1;
                     if(spriteNum == 2)
                         image = down2;
                 }else if(Objects.equals(gender, "girl")){
+                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gDown1;
                     if(spriteNum == 2)
@@ -217,11 +221,13 @@ public class Player extends Entity{
                 break;
             case "left":
                 if(Objects.equals(gender, "boy")){
+                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = left1;
                     if(spriteNum == 2)
                         image = left2;
                 }else if(Objects.equals(gender, "girl")){
+                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gLeft1;
                     if(spriteNum == 2)
@@ -230,11 +236,13 @@ public class Player extends Entity{
                 break;
             case "right":
                 if(Objects.equals(gender, "boy")){
+                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = right1;
                     if(spriteNum == 2)
                         image = right2;
                 }else if(Objects.equals(gender, "girl")){
+                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gRight1;
                     if(spriteNum == 2)
@@ -245,3 +253,60 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }
+/*
+ if(Objects.equals(gender, "boy")){
+            switch (direction){
+                case "up":
+                    if(spriteNum == 1)
+                        image = up1;
+                    if(spriteNum == 2)
+                        image = up2;
+                    break;
+                case "down":
+                    if(spriteNum == 1)
+                        image = down1;
+                    if(spriteNum == 2)
+                        image = down2;
+                    break;
+                case "left":
+                    if(spriteNum == 1)
+                        image = left1;
+                    if(spriteNum == 2)
+                        image = left2;
+                    break;
+                case "right":
+                    if(spriteNum == 1)
+                        image = right1;
+                    if(spriteNum == 2)
+                        image = right2;
+                    break;
+            }
+        }else{
+            switch (direction){
+                case "up":
+                    if(spriteNum == 1)
+                        image = gUp1;
+                    if(spriteNum == 2)
+                        image = gUp2;
+                    break;
+                case "down":
+                    if(spriteNum == 1)
+                        image = gDown1;
+                    if(spriteNum == 2)
+                        image = gDown2;
+                    break;
+                case "left":
+                    if(spriteNum == 1)
+                        image = gLeft1;
+                    if(spriteNum == 2)
+                        image = gLeft2;
+                    break;
+                case "right":
+                    if(spriteNum == 1)
+                        image = gRight1;
+                    if(spriteNum == 2)
+                        image = gRight2;
+                    break;
+            }
+        }
+*/

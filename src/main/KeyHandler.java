@@ -30,6 +30,7 @@ public class KeyHandler implements KeyListener {
             leftPressed = true;
         }
         if(code == KeyEvent.VK_E){
+            System.out.println("E pressed");
             changeCharacter = true;
         }
     }
@@ -50,6 +51,7 @@ public class KeyHandler implements KeyListener {
             leftPressed = false;
         }
         if(code == KeyEvent.VK_E){
+            System.out.println("E released");
             changeCharacter = false;
         }
     }
