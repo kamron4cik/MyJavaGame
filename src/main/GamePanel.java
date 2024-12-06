@@ -36,8 +36,8 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     //Entity and object
-    public Player player = new Player(this,keyH);
-    public SuperObject[] obj = new SuperObject[10];
+    public Player player = new Player(this, keyH, "boy");
+    public SuperObject[] obj = new SuperObject[11];
 
     //players default position
 //    int playerX = 18;
@@ -151,5 +151,10 @@ public class GamePanel extends JPanel implements Runnable{
     public void playSE(int i){
         se.setFile(i);
         se.play();
+    }
+
+    //setting gender
+    public void changeChar(String gender){
+        player.gender = gender;
     }
 }

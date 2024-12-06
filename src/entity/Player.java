@@ -18,10 +18,10 @@ public class Player extends Entity{
 
     public int hasKey = 0;
 
-    public Player(GamePanel gp, KeyHandler keyH){
+    public Player(GamePanel gp, KeyHandler keyH, String gender){
         this.gp = gp;
         this.keyH = keyH;
-        gender = "boy";
+        this.gender = gender;
 
         //Camera
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -47,6 +47,7 @@ public class Player extends Entity{
         try{
 
             if(Objects.equals(gender, "boy")){
+                startScreen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_default.png")));
                 up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
                 up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
                 down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
@@ -57,6 +58,7 @@ public class Player extends Entity{
                 right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
             }
             else if(Objects.equals(gender, "girl")){
+                gStartScreen = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down.png")));
                 gUp1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up.png")));
                 gUp2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_up.png")));
                 gDown1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/girl_down.png")));
@@ -165,7 +167,7 @@ public class Player extends Entity{
                 case "Medal":
                     gp.stopMusic();
                     gp.playMusic(5);
-                    speed++;
+                    speed+=2;
                     gp.obj[index] = null;
                     gp.ui.showMessage("DESPACITO TIME!!!");
                     break;
@@ -190,13 +192,13 @@ public class Player extends Entity{
         switch (direction){
             case "up":
                 if(Objects.equals(gender, "boy")){
-                    System.out.println("Drawing boy");
+//                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = up1;
                     if(spriteNum == 2)
                         image = up2;
                 }else if(Objects.equals(gender, "girl")){
-                    System.out.println("Drawing girl");
+//                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gUp1;
                     if(spriteNum == 2)
@@ -206,13 +208,13 @@ public class Player extends Entity{
                 break;
             case "down":
                 if(Objects.equals(gender, "boy")){
-                    System.out.println("Drawing boy");
+//                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = down1;
                     if(spriteNum == 2)
                         image = down2;
                 }else if(Objects.equals(gender, "girl")){
-                    System.out.println("Drawing girl");
+//                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gDown1;
                     if(spriteNum == 2)
@@ -221,13 +223,13 @@ public class Player extends Entity{
                 break;
             case "left":
                 if(Objects.equals(gender, "boy")){
-                    System.out.println("Drawing boy");
+//                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = left1;
                     if(spriteNum == 2)
                         image = left2;
                 }else if(Objects.equals(gender, "girl")){
-                    System.out.println("Drawing girl");
+//                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gLeft1;
                     if(spriteNum == 2)
@@ -236,13 +238,13 @@ public class Player extends Entity{
                 break;
             case "right":
                 if(Objects.equals(gender, "boy")){
-                    System.out.println("Drawing boy");
+//                    System.out.println("Drawing boy");
                     if(spriteNum == 1)
                         image = right1;
                     if(spriteNum == 2)
                         image = right2;
                 }else if(Objects.equals(gender, "girl")){
-                    System.out.println("Drawing girl");
+//                    System.out.println("Drawing girl");
                     if(spriteNum == 1)
                         image = gRight1;
                     if(spriteNum == 2)

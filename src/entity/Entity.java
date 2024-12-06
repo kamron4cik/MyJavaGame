@@ -11,6 +11,7 @@ public class Entity {
     public String gender;
 
     public String direction;
+    public BufferedImage startScreen, gStartScreen;
     public BufferedImage up1, gUp1;
     public BufferedImage up2, gUp2;
     public BufferedImage down1, gDown1;

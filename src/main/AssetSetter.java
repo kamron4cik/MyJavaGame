@@ -35,14 +35,26 @@ public class AssetSetter {
 
         gp.obj[5] = new DoorObject();
         gp.obj[5].worldX = 19 * gp.tileSize;
-        gp.obj[5].worldY = 9 * gp.tileSize;
+        gp.obj[5].worldY = 7 * gp.tileSize;
 
         gp.obj[6] = new ChestObject();
         gp.obj[6].worldX = 19 * gp.tileSize;
-        gp.obj[6].worldY = 8 * gp.tileSize;
+        gp.obj[6].worldY = gp.tileSize; // 1 * gp.tileSize
 
         gp.obj[7] = new MedalObject();
         gp.obj[7].worldX = 19 * gp.tileSize;
         gp.obj[7].worldY = 16 * gp.tileSize;
+
+        gp.obj[8] = new DoorObject();
+        gp.obj[8].worldX = 19 * gp.tileSize;
+        gp.obj[8].worldY = 29 * gp.tileSize;
+
+        gp.obj[9] = new DoorObject();
+        gp.obj[9].worldX = 19 * gp.tileSize;
+        gp.obj[9].worldY = 30 * gp.tileSize;
+
+        gp.obj[10] = new KeyObject();
+        gp.obj[10].worldX = 16 * gp.tileSize;
+        gp.obj[10].worldY = 12 * gp.tileSize;
     }
 }

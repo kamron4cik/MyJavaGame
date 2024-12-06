@@ -4,11 +4,16 @@ import javax.swing.*;
 
 public class Main{
     public static void main(String[] args) {
+
         //Default settings. Non-resizable window
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("2D adventure");
+
+        //Start screen
+        StartScreen startScreen = new StartScreen();
+        window.add(startScreen);
 
         //Game panel
         GamePanel gamePanel = new GamePanel();
@@ -24,5 +29,6 @@ public class Main{
         //calling the game loop
         gamePanel.setupGame();
         gamePanel.startGameThread();
+
     }
 }

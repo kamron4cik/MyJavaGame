@@ -11,6 +11,7 @@ public class UI {
     GamePanel gp;
     Font arial40;
     Font arial60;
+    Font arial80;
     BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -24,6 +25,7 @@ public class UI {
         this.gp = gp;
         arial40 = new Font("Arial", Font.ITALIC, 40);
         arial60 = new Font("Arial", Font.BOLD, 60);
+        arial80 = new Font("Verdana", Font.BOLD, 80);
 
         // set key image
         try{
@@ -112,4 +114,11 @@ public class UI {
             g2.drawString("FPS: " + gp.showFPS, 20, 100);
         }
     }
+
+    //Choosing a character
+    public void chooseCharacter(Graphics2D g2){
+        String chooseChar = "Choose a Character";
+        g2.drawString(chooseChar, 50, 50);
+    }
+
 }
